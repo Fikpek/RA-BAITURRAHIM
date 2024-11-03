@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RA BAITURRAHIM</title>
+    <link rel="shortcut icon" type="k-icon" href="images/logo1.png" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .banner-image {
+        background-image: url("images/bg.jpeg");
+        background-size: cover; /* Gambar mengisi seluruh area */
+        background-position: center; /* Memusatkan gambar */
+        height: 100vh; /* Tinggi 100% dari viewport */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .navbar {
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .bg-light {
+        background-color: #f8f9fa !important;
+      }
+
+      .shadow {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      ul .nav-item {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 5px;
+        padding: 0;
+        border: 1px solid #5f84a2;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      ul .nav-item a {
+        display: block;
+        padding: 3px 15px;
+        text-decoration: none;
+        color: #333;
+        text-align: center;
+        transition: color 0.3s;
+      }
+
+      ul .nav-item::before {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 150, 136, 0.2);
+        transition: left 0.3s;
+        z-index: 0;
+      }
+
+      ul .nav-item:hover::before {
+        left: 0;
+      }
+
+      ul .nav-item:hover a {
+        color: #fff;
+      }
+
+      ul .nav-item:hover {
+        background-color: #0096c7;
+        border-color: #0077b6;
+      }
+
+      .container h3 {
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .container p {
+        font-weight: 400;
+        margin: 20px;
+      }
+
+      .card {
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-header {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .card-body {
+        padding: 20px;
+      }
+
+      .card-body img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+        max-height: 200px;
+      }
+
+      .card-body p {
+        margin-bottom: 20px;
+      }
+
+      .card {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+
+      .card.slide-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .footer {
+        background-color: #f8f9fa;
+        padding: 20px 0;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+
+      .footer.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .footer .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 10px;
+      }
+
+      .footer ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer li {
+        margin-bottom: 10px;
+      }
+
+      .footer .social-media {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .footer .social-link {
+        margin: 0 10px;
+      }
+
+      .footer .fab {
+        font-size: 24px;
+      }
+
+      @media (max-width: 768px) {
+        .footer .social-media {
+          flex-direction: row;
+        }
+
+        .footer .social-link {
+          margin: 10px 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .footer .social-media {
+          flex-direction: row;
+        }
+
+        .footer .social-link {
+          margin: 10px 0;
+        }
+      }
+
+      .card,
+      .footer {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+
+      .card.slide-in,
+      .footer.slide-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .total-siswa {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 50px;
+      }
+
+      .total-siswa h3 {
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .tentang-sekolah {
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 1120px;
+        margin: 40px auto;
+      }
+
+      .tentang-sekolah h2 {
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .visi-misi {
+        margin-top: 20px;
+      }
+
+      .visi-misi h3 {
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .visi-misi ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .visi-misi li {
+        margin-bottom: 10px;
+      }
+
+      .visi-misi .col {
+        padding: 20px;
+      }
+
+      .visi-misi h4 {
+        margin-top: 0;
+      }
+
+      .animate-left {
+        opacity: 0;
+        transform: translateX(-100px);
+        transition: opacity 0.5s, transform 0.5s;
+      }
+
+      .animate-left.show {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .animate-opacity {
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+
+      .animate-opacity.show {
+        opacity: 1;
+      }
+
+      .animate-opacity {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      .animate-opacity.show {
+        opacity: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light p-md-3">
+      <div class="container">
+        <h3>RA Baiturrahim</ h3>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="mx-auto"></div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Banner Image -->
+    <div
+      class="banner-image w-100 vh-100 d-flex justify-content-center align-items-center"
+    >
+      <div class="content text-center">
+        <!-- <h1>heheheh</h1> -->
+      </div>
+    </div>
+
+    <!-- Tentang Sekolah -->
+    <div class="tentang-sekolah">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="visi-misi animate-opacity">
+              <h3>Visi Misi RA Baiturrahim</h3>
+              <div class="row">
+                <div class="col">
+                  <h4>A. Visi RA Baiturrahim</h4>
+                  <p>
+                    "Mempersiapkan generasi islami yang percaya diri, cerdas,
+                    terampil dan berakhlakul karimah"
+                  </p>
+                  <h4>Indikator Visi:</h4>
+                  <ol>
+                    <li>
+                      Menerapkan pembiasaan nilai-nilai keagamaan dilingkungan
+                      sekolah
+                    </li>
+                    <li>
+                      Meningkatkan kwalitas Pendidikan disetiap kegiatan
+                      pembelajaran
+                    </li>
+                    <li>Jujur dalam bertindak</li>
+                    <li>Mampu mengerjakan sesuatu secara mandiri</li>
+                    <li>Mampu mengaplikasikan dalam kehidupan sehari-hari</li>
+                  </ol>
+                </div>
+                <div class="col">
+                  <h4>B. Misi RA Baiturrahim</h4>
+                  <ol>
+                    <li>Memberikan contoh ketauladanan</li>
+                    <li>Menerapkan disiplin melalui pembiasaan</li>
+                    <li>Menerapkan pendidikan Agama dan pengetahuan</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fasilitas Sekolah -->
+    <div class="fasilitas-sekolah">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h2 class="animate-left">Fasilitas Sekolah</h2>
+            <ul>
+              <li>
+                <h4 class="animate-left">
+                  <i class="fas fa-building fa-2x" style="color: #007bff"></i>
+                  Ruang Kelas
+                </h4>
+                <p class="animate-left">
+                  Ruangan kelas yang nyaman dan aman untuk anak-anak belajar dan
+                  bermain.
+                </p>
+              </li>
+              <li>
+                <h4 class="animate-left">
+                  <i class="fas fa-child fa-2x" style="color: #ff9800"></i>
+                  Taman Bermain
+                </h4>
+                <p class="animate-left">
+                  Taman bermain yang dilengkapi dengan peralatan bermain seperti
+                  ayunan, perosotan, dan peralatan lainnya untuk anak-anak
+                  bermain dan berolahraga.
+                </p>
+              </li>
+              <li>
+                <h4 class="animate-left">
+                  <i class="fas fa-futbol fa-2x" style="color: #4caf50"></i>
+                  Lapangan Olahraga
+                </h4>
+                <p class="animate-left">
+                  Lapangan olahraga yang dapat digunakan untuk berbagai kegiatan
+                  olahraga seperti sepak bola dan lain-lain.
+                </p>
+              </li>
+              <li>
+                <h4 class="animate-left">
+                  <i class="fas fa-utensils fa-2x" style="color: #ff69b4"></i>
+                  Kantin
+                </h4>
+                <p class="animate-left">
+                  Kantin yang menyediakan makanan dan minuman
+                </p>
+              </li>
+              <li>
+                <h4 class="animate-left">
+                  <i class="fas fa-toilet fa-2x" style="color: #2196f3"></i>
+                  Toilet dan Kamar Mandi
+                </h4>
+                <p class="animate-left">
+                  Toilet dan kamar mandi yang bersih dan aman untuk anak-anak.
+                </p>
+              </li>
+              <li>
+                <h4 class="animate-left">
+                  <i class="fas fa-medkit fa-2x" style="color: #8bc34a"></i>
+                  Fasilitas Kesehatan (P3K)
+                </h4>
+                <p class="animate-left">
+                  Fasilitas kesehatan yang menyediakan perawatan kesehatan dasar
+                  untuk anak-anak, seperti P3K (Pertolongan Pertama pada
+                  Kecelakaan).
+                </p>
+              </li>
+              <li>
+                <h4 class="animate-left">
+                  <i class="fas fa-parking fa-2x" style="color: #9c27b0"></i>
+                  Parkir
+                </h4>
+                <p class="animate-left">
+                  Parkir yang aman dan nyaman untuk orang tua dan guru.
+                </p>
+              </li>
+              <li>
+                <h4 class="animate-left">
+                  <i class="fas fa-lock fa-2x" style="color: #03a9f4"></i>
+                  Keamanan
+                </h4>
+                <p class="animate-left">
+                  Keamanan yang baik untuk menjaga keselamatan anak-anak dan
+                  staf sekolah.
+                </p>
+              </li>
+              <li>
+                <h4 class="animate-left">
+                  <i class="fas fa-mosque fa-2x" style="color: #8e24aa"></i>
+                  Masjid
+                </h4>
+                <p class="animate-left">
+                  Masjid yang dapat digunakan untuk kegiatan keagamaan dan
+                  ibadah.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container my-5 d-grid gap-5">
+      <h1>Kegiatan</h1>
+
+      <div class="card mb-3 animate-opacity">
+        <div class="card-header">
+          <h3>Pra Siaga</h3>
+        </div>
+        <div class="card-body">
+          <p>
+            Kegiatan outbound di alam terbuka meliputi berbagai permainan dan
+            latihan fisik yang dirancang untuk membangun kerja sama tim dan
+            keterampilan sosial. Siswa belajar tentang pentingnya kolaborasi dan
+            komunikasi saat menyelesaikan tantangan.
+          </p>
+          <p>Lokasi: Paku Haji</p>
+          <img
+            src="images/Prasg.jpg"
+            alt="Foto Kegiatan 1"
+            class="img-fluid"
+          />
+        </div>
+      </div>
+
+      <div class="card mb-3 animate-opacity">
+        <div class="card-header">
+          <h3>Upacara Bendera Rutin</h3>
+        </div>
+        <div class="card-body">
+          <p>
+            Setiap hari Senin, siswa mengikuti upacara bendera yang diadakan di
+            halaman sekolah. Upacara ini bertujuan untuk menanamkan rasa
+            nasionalisme dan cinta tanah air. Selama upacara, siswa menyanyikan
+            lagu kebangsaan, mengibarkan bendera merah-putih, dan mendengarkan
+            amanat dari pembina upacara.
+          </p>
+          <p>Lokasi: Halaman Sekolah</p>
+          <img
+            src="images/upacara.jpg"
+            alt="Foto Kegiatan 2"
+            class="img-fluid"
+          />
+        </div>
+      </div>
+
+      <div class="card mb-3 animate-opacity">
+        <div class="card-header">
+          <h3>Acara Kelulusan</h3>
+        </div>
+        <div class="card-body">
+          <p>
+            Acara kelulusan Taman Kanak-Kanak adalah momen spesial yang menandai
+            akhir perjalanan pendidikan anak-anak di tingkat TK. Acara ini diadakan
+            di Venus Cimahi dengan melibatkan orang tua, guru, dan siswa.
+          </p>
+          <p>Lokasi: Venus Cimahi</p>
+          <img
+            src="images/kelulusan.jpg"
+            alt="Foto Kegiatan 3"
+            class="img-fluid"
+          />
+        </div>
+      </div>
+
+      <div class="card mb-3 animate-opacity">
+        <div class="card-header">
+          <h3>Manasik Haji</h3>
+        </div>
+        <div class="card-body">
+          <p>
+            Kegiatan Manasik Haji untuk anak TK adalah program edukatif yang
+            dirancang untuk mengenalkan konsep ibadah haji kepada anak-anak dengan
+            cara yang menyenangkan dan mudah dipahami. Kegiatan ini bertujuan
+            untuk memberikan pemahaman dasar tentang haji dan menanamkan
+            nilai-nilai spiritual sejak dini.
+          </p>
+          <p>Lokasi: Lapangan Armed Cimahi</p>
+          <img
+            src="images/Manasik.jpg"
+            alt="Foto Kegiatan 4"
+            class="img-fluid"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PPDB Section -->
+  <div
+    class="ppdb-section animate-opacity"
+    style="
+      background-color: #e0f7fa;
+      padding: 40px 0;
+      margin-bottom: 20px;
+      border-top: 5px solid #009688;
+    "
+  >
+    <div class="container text-center">
+      <h2 style="color: #00796b; font-weight: bold">
+        Penerimaan Peserta Didik Baru (PPDB)
+      </h2>
+      <p style="font-size: 1.1em; margin: 20px 0">
+        Kami mengundang Anda untuk mendaftar ke RA Baiturrahim. Pendaftaran
+        dibuka mulai Januari sampai Juni. Untuk informasi lebih lanjut,
+        silakan hubungi kami melalui kontak yang tersedia di bawah.
+      </p>
+      <h4>Berkas yang harus disiapkan:</h4>
+      <ul style="list-style-type: none; padding: 0">
+        <li>✔ Fotocopy akta kelahiran</li>
+        <li>✔ Fotocopy kartu keluarga</li>
+      </ul>
+      <p style="margin-top: 20px; font-weight: bold">
+        Silakan datang langsung ke lokasi sekolah untuk melakukan pendaftaran
+        lebih lanjut.
+      </p>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <h5 class="font-weight-bold mb-3">Tentang Sekolah</h5>
+          <ul class="list-unstyled">
+            <li>
+              <span class="font-weight-bold">Alamat:</span> Jl. Ibu Ganirah
+              No.53, Rt06/Rw05 Kelurahan Cibeber, Kota Cimahi, Jawa Barat
+            </li>
+            <li><span class="font-weight-bold">Akreditasi:</span> B</li>
+          </ul>
+          <div class="social-media">
+            <a
+              href="https://www.facebook.com/RA Baiturrahim"
+              target="_blank"
+              class="social-link"
+            >
+              <i class="fab fa-facebook fa-2x" style="color: #3b5998"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/rabaiturrahim_cimahi"
+              target="_blank"
+              class="social-link"
+            >
+              <i class="fab fa-instagram fa-2x" style="color: #e1306c"></i>
+            </a>
+            <a
+              href="https://www.youtube.com/@rabaiturrahimcimahi7910"
+              target="_ blank"
+              class="social-link"
+            >
+              <i class="fab fa-youtube fa-2x" style="color: #ff0000"></i>
+            </a>
+            <a
+              href="https://wa.me/628562015284"
+              target="_blank"
+              class="social-link"
+            >
+              <i class="fab fa-whatsapp fa-2x" style="color: #25d366"></i>
+            </a>
+            <a
+              href="mailto:rabaiturrahim53@gmail.com"
+              target="_blank"
+              class="social-link"
+            >
+              <i class="fab fa-google fa-2x" style="color: #4285f4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    var nav = document.querySelector("nav");
+
+    window.addEventListener("scroll", function () {
+      if (window.pageYOffset > 500) {
+        nav.classList.add("bg-light", "shadow");
+      } else {
+        nav.classList.remove("bg-light", "shadow");
+      }
+    });
+  </script>
+
+  <script>
+    var cards = document.querySelectorAll(".card, .footer");
+
+    window.addEventListener("scroll", function () {
+      cards.forEach(function (card) {
+        var cardTop = card.offsetTop;
+        var cardHeight = card.offsetHeight;
+        var scrollPosition = window.scrollY + window.innerHeight;
+
+        if (scrollPosition > cardTop + cardHeight / 2) {
+          card.classList.add("slide-in");
+        } else {
+          card.classList.remove("slide-in");
+        }
+      });
+    });
+
+    const animateLeftElements = document.querySelectorAll(".animate-left");
+
+    window.addEventListener("scroll", () => {
+      animateLeftElements.forEach((element) => {
+        const elementTop = element.offsetTop;
+        const elementHeight = element.offsetHeight;
+        const scrollPosition = window.scrollY + window.innerHeight;
+
+        if (scrollPosition > elementTop + elementHeight / 2) {
+          element.classList.add("show");
+        } else {
+          element.classList.remove("show");
+        }
+      });
+    });
+
+    const animateOpacityElements =
+      document.querySelectorAll(".animate-opacity");
+
+    window.addEventListener("scroll", () => {
+      animateOpacityElements.forEach((element) => {
+        const elementTop = element.offsetTop;
+        const elementHeight = element.offsetHeight;
+        const scrollPosition = window.scrollY + window.innerHeight;
+
+        if (scrollPosition > elementTop + elementHeight / 2) {
+          element.classList.add("show");
+        } else {
+          element.classList.remove("show");
+        }
+      });
+    });
+
+    const ppdbSection = document.querySelector(".ppdb-section");
+
+    window.addEventListener("scroll", () => {
+      const sectionTop = ppdbSection.offsetTop;
+      const sectionHeight = ppdbSection.offsetHeight;
+      const scrollPosition = window.scrollY + window.innerHeight;
+
+      if (scrollPosition > sectionTop + sectionHeight / 2) {
+        ppdbSection.classList.add("show");
+      } else {
+        ppdbSection.classList.remove("show");
+      }
+    });
+  </script>
+</body>
+</html>
